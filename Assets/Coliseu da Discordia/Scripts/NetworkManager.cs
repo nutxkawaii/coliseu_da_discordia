@@ -27,6 +27,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         Debug.Log("OnCreatedRoom");
+        Debug.Log("Sala Criada");
         
     }
 }
