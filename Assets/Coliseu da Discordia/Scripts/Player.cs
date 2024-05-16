@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Player : Character
     {
         base.Awake(); 
         rb = GetComponent<Rigidbody>();
+       // codigo relacionado a camera -- - - if (photonView.IsMine) Camera.main.gameObject.SetActive(false);
     }
     protected override void Update()
     {
