@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviourPun
 {
     [Header ("Life Controller")]
     protected float currentLife;
@@ -19,6 +21,10 @@ public class Character : MonoBehaviour
     protected bool canJump;
     [SerializeField] protected float jumpForce;
 
+    [Header("Animator Controller")]
+    [Tooltip("Controla as animações do personagem")]
+    [SerializeField] protected Animator anim;
+
     #region Unity Metods
     protected virtual void Awake()
     {
@@ -26,15 +32,17 @@ public class Character : MonoBehaviour
     }
     protected virtual void Update()
     {
-        
+        Animations();
     }
 
-    protected virtual void fixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (canJump) Jump(jumpForce);
     }
     #endregion
 
+
+    #region Life Controller
     public virtual void TakeDamage(float _value)
     {
         currentLife = Mathf.Max(currentLife - _value, 0);
@@ -51,7 +59,9 @@ public class Character : MonoBehaviour
     {
         dead = true;
     }
+    #endregion
 
+    #region Movement Controller
     protected virtual void Move()
     {
 
@@ -65,6 +75,14 @@ public class Character : MonoBehaviour
     {
         return Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
     }
+    #endregion
 
+    #region Animations
+    protected virtual void Animations()
+    {
+        anim.SetBool("Dead", dead);
+        anim.SetBool("OnGround", OnGround());
+    }
+    #endregion
 
 }

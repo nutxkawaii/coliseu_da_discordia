@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Player : Character
 {
+    
     protected Rigidbody rb;
 
     protected float rotY;
@@ -14,27 +15,29 @@ public class Player : Character
 
     protected override void Awake()
     {
-        base.Awake(); 
-        rb = GetComponent<Rigidbody>();
-       // codigo relacionado a camera -- - - if (photonView.IsMine) Camera.main.gameObject.SetActive(false);
+       base.Awake(); 
+       rb = GetComponent<Rigidbody>();
+       if(photonView.IsMine) Camera.main.gameObject.SetActive(false);
     }
     protected override void Update()
     {
         base.Update();
+
+        if(!photonView.IsMine) return; //Ismine para verificar se o controle não for do meu jogador, não aceita os inputs e Rotação
+
         PlayerInputs();
         RotatePlayer();
         
     }
-    protected override void fixedUpdate()
+    protected override void FixedUpdate()
     {
-        base.fixedUpdate();
+        base.FixedUpdate();
         Move();
     }
     protected override void Move()
     {
         base.Move();
 
-        //Vector3 _velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.y * moveSpeed);
         Vector3 _velocity = (transform.right * direction.x + transform.forward * direction.y) * moveSpeed;
         _velocity.y = rb.velocity.y;
         rb.velocity = _velocity;
@@ -43,8 +46,9 @@ public class Player : Character
 
     protected virtual void PlayerInputs()
     {
-        direction.y = Input.GetAxis("Horizontal");
-        direction.x = Input.GetAxis("Vertical");
+        
+        direction.x = Input.GetAxis("Horizontal");
+        direction.y = Input.GetAxis("Vertical");
 
         rotY = Input.GetAxisRaw("Mouse X");
 
@@ -67,5 +71,13 @@ public class Player : Character
         rb.velocity = _velocity;
 
         rb.AddForce(Vector3.up * _value);
+    }
+
+    protected override void Animations()
+    {
+        base.Animations();
+
+        anim.SetFloat("SpeedX", direction.x);
+        anim.SetFloat("SpeedZ", direction.y);
     }
 }
