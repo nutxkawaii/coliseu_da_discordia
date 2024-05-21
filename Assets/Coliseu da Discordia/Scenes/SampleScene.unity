@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -667,8 +667,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0baab26aacc830b4eb1fbcaaf0227aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 8005360547827001042, guid: 6e802fb81ddc1b648ab1d0a7b4fd16be,
+  playerPrefabAssasino: {fileID: 1482969567472004511, guid: 8b475404aec9f274c9b2cb220bac6d98,
     type: 3}
+  playerPrefabVitima: {fileID: 1482969567472004511, guid: 3ec3b39bda267d344adb18dab513b64b,
+    type: 3}
+  cameraPlayer: {fileID: 0}
 --- !u!4 &1593887848
 Transform:
   m_ObjectHideFlags: 0

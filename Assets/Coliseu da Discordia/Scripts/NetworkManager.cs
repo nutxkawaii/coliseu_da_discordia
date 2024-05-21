@@ -11,8 +11,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         [Beneficio] Podemos acessar esse scrip de qualquer objeto que fizermos referência ao Network Manager e suas funcionalidades
      */
 
-    [SerializeField] GameObject playerPrefab;
-    public Transform cameraPlayer;
+    [SerializeField] GameObject playerPrefabAssasino;
+    [SerializeField] GameObject playerPrefabVitima;
+    [HideInInspector]public Transform cameraPlayer;
 
     /* List<Photon.Realtime.Player> players;
     Pedir ao Cleber para Criando uma lista com o nome de todos os jogadores da rede 
@@ -85,8 +86,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //Cria uma localização aleatória entre -3 e 3 com 2 de altura para instanciar o player
         Vector3 _pos = new Vector3(Random.Range(-3f, 3f), 2f, Random.Range(-3f, 3f));
 
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            PhotonNetwork.Instantiate(playerPrefabAssasino.name, _pos, Quaternion.identity);
+
+        }
+        else
+        {
         //Instancia o prefab na rede usando seu nome e localização
-        PhotonNetwork.Instantiate(playerPrefab.name, _pos, Quaternion.identity);
+        PhotonNetwork.Instantiate(playerPrefabVitima.name, _pos, Quaternion.identity);
+            
+        }
+
+
     }
 
 }

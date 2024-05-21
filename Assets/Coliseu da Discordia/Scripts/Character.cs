@@ -27,6 +27,17 @@ public class Character : MonoBehaviourPun
     [Tooltip("Controla as animações do personagem")]
     [SerializeField] protected Animator anim;
 
+    [Header("Attack Sistem")]
+    [Tooltip("Controla o sistema de ataque do personagem")]
+    [SerializeField] protected float attackDelay;
+    [SerializeField] protected float attackSpeed;
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected Transform posAttack;
+    [SerializeField] protected LayerMask enemyLayer;
+    protected float nextAttackTime;
+    protected bool attacking;
+
+
     #region Unity Metods
     protected virtual void Awake()
     {
