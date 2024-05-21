@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviourPun
 {
@@ -11,6 +12,7 @@ public class Character : MonoBehaviourPun
     [Tooltip("Define character's max life")]
     [SerializeField] protected float maxLife;
     protected bool dead;
+   // [SerializeField] Image life; //[variável para ter acesso a imagem para controlar a barra de vida do jogador]
 
     [Header ("Movement Controller")]
     [SerializeField] protected float moveSpeed;
@@ -29,6 +31,7 @@ public class Character : MonoBehaviourPun
     protected virtual void Awake()
     {
         currentLife = maxLife;
+        //UpdateLifeInPhoton();
     }
     protected virtual void Update()
     {
@@ -43,16 +46,35 @@ public class Character : MonoBehaviourPun
 
 
     #region Life Controller
+    /*
+    protected void UpdateLifeInPhoton() //Metodo criado para atualizar a barra de vida do jogador em rede
+    {
+        if (photonView.IsMine) photonView.RPC(nameof(UpdateLife), RpcTarget.AllBuffered, currentLife);
+        // Se o photon view for meu executa o metodo de atualizar vida para todos os jogadores presentes ou ingressantes futuros [AllBuffered]
+        //nameof referencia o metodo que queremos executar 
+
+    }
+    */
+
+    [PunRPC] //Utilizado para o metodo abaixo ser chamado remotamente pelo photon
+    protected void UpdateLife(float _currentLife)
+    {
+        currentLife = _currentLife;
+        //life.fillAmount = currentLife/maxLife; //Codigo referente ao objetoda barra de vida para atualizar o parametro fillamount
+            
+    }
+
     public virtual void TakeDamage(float _value)
     {
         currentLife = Mathf.Max(currentLife - _value, 0);
-
+        //UpdateLifeInPhoton();
         if (currentLife == 0) Death(); 
     }
 
     public virtual void Heal(float _value) 
     { 
         currentLife = Mathf.Min(currentLife + _value, maxLife);
+        //UpdateLifeInPhoton();
     }
 
     protected virtual void Death()

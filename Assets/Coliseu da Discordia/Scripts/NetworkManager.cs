@@ -6,7 +6,30 @@ using Photon.Realtime;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    public static NetworkManager instance;
+    /*  Transforma esse script Network Manager para um singleton, Usamos apenas quando temos certeza que APENAS UM OBJETO obterá essa classe[script] 
+        [Beneficio] Podemos acessar esse scrip de qualquer objeto que fizermos referência ao Network Manager e suas funcionalidades
+     */
+
     [SerializeField] GameObject playerPrefab;
+    public Transform cameraPlayer;
+
+    /* List<Photon.Realtime.Player> players;
+    Pedir ao Cleber para Criando uma lista com o nome de todos os jogadores da rede 
+    podemos usar esse recurso para a votação quando o jogador assasino for suspeito */
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else 
+        {
+            gameObject.SetActive(false);
+        }
+    }
     private void Start()
     {
         Debug.Log("Start");

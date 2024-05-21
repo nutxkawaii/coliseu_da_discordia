@@ -10,6 +10,17 @@ public class CameraControl : MonoBehaviourPun
 
     private void Awake()
     {
-        if(!photonView.IsMine) myCamera.SetActive(false);
+        if (photonView.IsMine)
+        {
+            NetworkManager.instance.cameraPlayer = myCamera.transform;
+        }
+        
+        else
+        {
+            myCamera.SetActive(false);
+
+        }
+
+         
     }
 }
