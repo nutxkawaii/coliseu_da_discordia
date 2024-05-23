@@ -32,6 +32,7 @@ public class Character : MonoBehaviourPun
     [SerializeField] protected float attackDelay;
     [SerializeField] protected float attackSpeed;
     [SerializeField] protected float attackRange;
+    [SerializeField] protected float attackDamage;
     [SerializeField] protected Transform posAttack;
     [SerializeField] protected LayerMask enemyLayer;
     protected float nextAttackTime;
@@ -57,7 +58,7 @@ public class Character : MonoBehaviourPun
 
 
     #region Life Controller
-    /*
+    
     protected void UpdateLifeInPhoton() //Metodo criado para atualizar a barra de vida do jogador em rede
     {
         if (photonView.IsMine) photonView.RPC(nameof(UpdateLife), RpcTarget.AllBuffered, currentLife);
@@ -65,7 +66,7 @@ public class Character : MonoBehaviourPun
         //nameof referencia o metodo que queremos executar 
 
     }
-    */
+    
 
     [PunRPC] //Utilizado para o metodo abaixo ser chamado remotamente pelo photon
     protected void UpdateLife(float _currentLife)
@@ -77,9 +78,14 @@ public class Character : MonoBehaviourPun
 
     public virtual void TakeDamage(float _value)
     {
+        Debug.Log("TakeDamage");
         currentLife = Mathf.Max(currentLife - _value, 0);
         //UpdateLifeInPhoton();
-        if (currentLife == 0) Death(); 
+
+        if (currentLife == 0 && photonView.IsMine)
+        {
+            photonView.RPC(nameof(Death), RpcTarget.AllBuffered, true);
+        } 
     }
 
     public virtual void Heal(float _value) 
@@ -88,7 +94,8 @@ public class Character : MonoBehaviourPun
         //UpdateLifeInPhoton();
     }
 
-    protected virtual void Death()
+    [PunRPC]
+    protected virtual void Death(bool _value)
     {
         dead = true;
     }

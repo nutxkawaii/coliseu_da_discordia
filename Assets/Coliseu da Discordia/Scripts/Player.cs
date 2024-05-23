@@ -24,6 +24,13 @@ public class Player : Character
     {
         base.Update();
 
+        if (dead)
+        {
+            direction.x = 0;
+            direction.y = 0;
+            return;
+        }
+
         if(!photonView.IsMine) return; //Ismine para verificar se o controle não for do meu jogador, não aceita os inputs e Rotação
 
         PlayerInputs();
@@ -84,6 +91,7 @@ public class Player : Character
         foreach (var _enemy in _enemies)
         {
             Debug.Log("Acerto o inimigo: " + _enemy.name);
+            _enemy.GetComponent<Player>().TakeDamage(attackDamage);
         }
     }
 
