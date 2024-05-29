@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9181,7 +9181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -40903,74 +40903,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58b2872ef0b34d74ca35c7665c84e25d, type: 3}
---- !u!1001 &1895584660
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3855984374752105373, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_Name
-      value: SM_Chr_Bartender_Male_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.768
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.824
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524118676831340839, guid: 4a1014b4627f8bf4aa552e3c6cb762c8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4a1014b4627f8bf4aa552e3c6cb762c8, type: 3}
 --- !u!1 &1898654501
 GameObject:
   m_ObjectHideFlags: 0
@@ -47922,7 +47854,6 @@ SceneRoots:
   - {fileID: 1588923523}
   - {fileID: 640065602}
   - {fileID: 835558474}
-  - {fileID: 1895584660}
   - {fileID: 1290694799}
   - {fileID: 1766109262}
   - {fileID: 1791086180}
