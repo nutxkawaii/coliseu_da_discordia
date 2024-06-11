@@ -84,7 +84,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void CreatePlayerAvatar()
     {
         //Cria uma localização aleatória entre -3 e 3 com 2 de altura para instanciar o player
-        Vector3 _pos = new Vector3(Random.Range(-3f, 3f), 2f, Random.Range(-3f, 3f));
+        Vector3 _pos = new Vector3(Random.Range(16f, 10f), 2f, Random.Range(-16f, 20f));
 
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)

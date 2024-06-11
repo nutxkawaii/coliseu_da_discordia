@@ -1,61 +1,63 @@
+using ReadyPlayerMe.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SegurarEPegarObjetos : MonoBehaviour
 {
-    public float distanciaMaxima = 2.0f;
-    public LayerMask layer;
-    public List<string> tagsObjetosSeguraveis;
-    public List<string> tagsObjetosPegaveis;
-    public List<Transform> posicoesMao;
-    private bool segurando = false;
-    private Transform objeto;
+    public Transform handPosition;  // Posição onde o objeto será segurado
+    private GameObject heldObject = null;
+    private Rigidbody heldObjectRb = null;
+    protected Collider _colliderObject;
+    [SerializeField] protected float handDistance;
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0)) {
-            segurando = false;
-        }
-
-        if (segurando) {
-            if (Input.GetKeyDown(KeyCode.E)) {
-                segurando = false;
+        if (Input.GetKeyDown(KeyCode.E)) // "Fire1" geralmente é o botão esquerdo do mouse
+        {
+            //Debug.DrawRay(handPosition.position, transform.forward, Color.red); Mostra a linha feita pelo raycast
+            if (heldObject == null)
+            {
+                TryPickUpObject();
             }
-            int index = 0;
-            objeto.position = posicoesMao[index].position;
-            objeto.rotation = posicoesMao[index].rotation;
-        } else {
-            RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(transform.position, transform.forward, out hit, distanciaMaxima, layer, QueryTriggerInteraction.Ignore)) {
-                if (Input.GetMouseButtonDown(0)) {
-                    string tagObjeto = tagsObjetosPegaveis.Find((tag) => {
-                        if (hit.transform.gameObject.tag == tag) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    });
+            else
+            {
+                DropObject();
+            }
+        }
+    }
 
-                    if (tagObjeto != null) {
-                        segurando = true;
-                        objeto = hit.transform;
-                    }
-                } else if (Input.GetKeyDown(KeyCode.E)) {
-                    string tagObjeto = tagsObjetosSeguraveis.Find((tag) => {
-                        if (hit.transform.gameObject.tag == tag) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    });
-
-                    if (tagObjeto != null) {
-                        segurando = true;
-                        objeto = hit.transform;
-                    }
+    void TryPickUpObject()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(handPosition.position, transform.forward, out hit, handDistance))
+        {
+            
+            if (hit.collider.gameObject.CompareTag("Pickup"))
+            {
+                heldObject = hit.collider.gameObject;
+                heldObjectRb = heldObject.GetComponent<Rigidbody>();
+                _colliderObject = heldObject.GetComponent<Collider>();
+                if (heldObjectRb != null)
+                {
+                    _colliderObject.isTrigger = true;
+                    heldObjectRb.isKinematic = true;
+                    heldObject.transform.position = handPosition.position;
+                    heldObject.transform.parent = handPosition;
                 }
             }
+        }
+    }
+
+    void DropObject()
+    {
+        if (heldObject != null)
+        {
+            _colliderObject.isTrigger = false;
+            heldObjectRb.isKinematic = false;
+            heldObject.transform.parent = null;
+            heldObject = null;
+            heldObjectRb = null;
         }
     }
 }
