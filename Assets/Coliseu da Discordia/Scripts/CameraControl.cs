@@ -12,7 +12,7 @@ public class CameraControl : MonoBehaviourPun
     {
         if (photonView.IsMine)
         {
-            NetworkManager.instance.cameraPlayer = myCamera.transform;
+            GameManager.instance.cameraPlayer = myCamera.transform;
         }
         
         else

@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samples/Ready Player Me Core/6.2.4/AvatarCreatorSamples/AvatarCreatorWizard/Scenes/AvatarCreatorWizard.unity
     guid: 86c1a7b565e8e154dbb4522097759eeb
   - enabled: 1

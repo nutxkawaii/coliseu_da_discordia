@@ -16,6 +16,6 @@ public class LookAtPlayer : MonoBehaviourPun
     }
     void RotateToPlayer()
     {
-       transform.LookAt(NetworkManager.instance.cameraPlayer.position);
+       transform.LookAt(GameManager.instance.cameraPlayer.position);
     }
 }

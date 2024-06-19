@@ -41,6 +41,7 @@ MonoBehaviour:
   - UpdateLife
   - AttackPun
   - Death
+  - Log
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

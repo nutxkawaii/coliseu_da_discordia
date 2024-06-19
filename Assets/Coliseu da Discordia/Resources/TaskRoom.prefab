@@ -216,12 +216,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aae53ceef4662f4e92b71b85e846184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objCollider: {fileID: 4430472698436725994}
   taskInfo:
     area: "Sal\xE3o de Entrada"
     taskDescription: Concertar a Junkbox
     taskLocation: {fileID: 551051913994427276}
   highLight: {fileID: 940600665798097487}
-  mapIcon: {fileID: 1782506931314116476}
+  infoIcon: {fileID: 1782506931314116476}
 --- !u!65 &4430472698436725994
 BoxCollider:
   m_ObjectHideFlags: 0
