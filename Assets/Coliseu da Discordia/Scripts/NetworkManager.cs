@@ -8,17 +8,28 @@ using TMPro;
 
 
 
+ /*NetworkManager: Herda de MonoBehaviourPunCallbacks,
+  fornecendo retornos de chamada de rede Photon,
+  e MonoBehaviour, a classe base para todos os scripts Unity.*/
 
-    public class NetworkManager : MonoBehaviourPunCallbacks
+public class NetworkManager : MonoBehaviourPunCallbacks
     {
+        
         public static NetworkManager instance;
-        /*  Transforma esse script Network Manager para um singleton, Usamos apenas quando temos certeza que APENAS UM OBJETO obterá essa classe[script] 
-            [Beneficio] Podemos acessar esse scrip de qualquer objeto que fizermos referência ao Network Manager e suas funcionalidades
-         */
-
+    /*  Transforma esse script Network Manager para um singleton, Usamos apenas quando temos certeza que APENAS UM OBJETO obterá essa classe[script] 
+        [Beneficio] Podemos acessar esse scrip de qualquer objeto que fizermos referência ao Network Manager e suas funcionalidades
+     */
+        [Header("Login Sistem")]
+        [Tooltip("Campo de entrada para o apelido do jogador")]
         public TMP_InputField inputNickName; // Campo para digitar o nome do jogador ++++++++
+
+        [Tooltip("Referência à tela de menu GameObject")]
         public GameObject menuScreen; //alterar para MenuController ++++++++
+
+        [Tooltip("Referência à tela de carregamento GameObject")]
         public GameObject loadingScreen; //alterar para MenuController ++++++++
+
+        [Tooltip("Referência à tela de tarefas GameObject")]
         public GameObject taskScreen; //alterar para MenuController ++++++++
 
        
@@ -56,7 +67,6 @@ using TMPro;
             Debug.Log("ConnectToPhoton");
             loadingScreen.SetActive(true);
             menuScreen.SetActive(false);
-           // taskScreen.SetActive(true);
 
             PhotonNetwork.ConnectUsingSettings();
         }
@@ -97,6 +107,7 @@ using TMPro;
             //PhotonNetwork.LocalPlayer.NickName = inputNickName.text;
             GameManager.instance.StartGame();
             // photonView.RPC("CreatePlayerAvatar", PhotonNetwork.LocalPlayer);
+            taskScreen.SetActive(true);
         }
 
 

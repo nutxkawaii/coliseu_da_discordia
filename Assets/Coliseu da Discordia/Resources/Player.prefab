@@ -348,7 +348,7 @@ MonoBehaviour:
   attackDelay: 0.15
   attackSpeed: 2.2
   attackRange: 0.8
-  attackDamage: 10
+  attackDamage: 100
   posAttack: {fileID: 866167684720993969}
   enemyLayer:
     serializedVersion: 2

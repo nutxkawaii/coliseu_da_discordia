@@ -9,7 +9,7 @@ public class ChatBox : MonoBehaviourPun
 {
     public TextMeshProUGUI chatLogText;
     public TMP_InputField chatInput;
-
+    //public Player player;
 
     // instance
     public static ChatBox instance;
@@ -18,8 +18,9 @@ public class ChatBox : MonoBehaviourPun
     void Awake()
     {
         instance = this;
+        
     }
-
+    
 
     void Update()
     {
@@ -27,9 +28,13 @@ public class ChatBox : MonoBehaviourPun
         {
             
             if (EventSystem.current.currentSelectedGameObject == chatInput.gameObject)
+            {
+                //player.isChatActive = false; // Desativa o chat
                 BtnEnviarMsg();
+            }
             else
-                EventSystem.current.SetSelectedGameObject(chatInput.gameObject);
+            //player.isChatActive = true; // Ativa o chat
+            EventSystem.current.SetSelectedGameObject(chatInput.gameObject);
         }
     }
 

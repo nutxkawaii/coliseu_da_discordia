@@ -7,32 +7,48 @@ namespace Mystimor
 
     public class TaskBase : MonoBehaviour
     {
-        private Collider objCollider;
+        [Header("Login Sistem")]
+        private Collider objCollider; // Armazena o componente collider do objeto de tarefa no mapa.
+
+        [Tooltip("Campo para adicionar informações sobre a tarefa")]
         [SerializeField] private TaskInfo taskInfo;
+
+        [Tooltip("Objeto Que representa o local onde a tarefa deve ser executada")]
         [SerializeField] private GameObject highLight, infoIcon;
+
 
         public TaskInfo TaskInfo { get => taskInfo; }
         public GameObject InfoIcon { get => infoIcon; }
         public GameObject HighLight { get => highLight; }
 
+        /* em relação a utilização de = private GameObject highLight | depois | public GameObject HighLight { get => highLight; }
+ 
+          Uma propriedade é um membro que oferece um mecanismo flexível para ler,
+          gravar ou calcular o valor de um campo particular. 
+          As propriedades podem ser usadas como se fossem membros de dados públicos, 
+          mas são métodos realmente especiais chamados acessadores. 
+          Esse recurso permite que os dados sejam acessados facilmente 
+          e ainda ajuda a promover a segurança e a flexibilidade dos métodos.*/
+
         private void Awake()
         {
-            objCollider = GetComponent<Collider>();
+            objCollider = GetComponent<Collider>(); //Inicializa o objCollider obtendo o componente Collider anexado ao GameObject.
+
         }
 
 
         public void ActivateTasks()
         {
-            highLight.SetActive(true);
+            highLight.SetActive(true); //Ativa o ícone de highLight e informações GameObjects
             infoIcon.SetActive(true);
-            objCollider.enabled = true;
+            objCollider.enabled = true; //Permite que o componente colisor interaja com a tarefa.
         }
 
         public void TaskComplete()
         {
-            highLight.SetActive(false);
+            highLight.SetActive(false); //Desativa o ícone de highLight e informações GameObjects
             infoIcon.SetActive(false);
-            objCollider.enabled = false;
+            objCollider.enabled = false; //Desativa o componente collider para indicar que a tarefa está concluída.
         }
 
        

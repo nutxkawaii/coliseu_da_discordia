@@ -13,18 +13,24 @@ namespace Mystimor
     {
         [Header ("Life Controller")]
         protected float currentLife;
+
         [Tooltip("Define character's max life")]
         [SerializeField] protected float maxLife;
         protected bool dead;
        // [SerializeField] Image life; //[variável para ter acesso a imagem para controlar a barra de vida do jogador]
 
         [Header ("Movement Controller")]
+        [Tooltip("Define a Velocidade de Movimento do jogador")]
         [SerializeField] protected float moveSpeed;
         protected Vector2 direction;
+        [Tooltip("Define o ponto de detecção do chão do jogador")]
         [SerializeField] protected Transform groundCheck;
+        [Tooltip("Cria a verificação da camada para o chão ser detectado ")]
         [SerializeField] protected LayerMask groundLayer;
+        [Tooltip("Define a distância da verificação da camada do chão ser detectado e os pés do Personagens")]
         [SerializeField] protected float groundDistance;
         protected bool canJump;
+        [Tooltip("Define a força do pulo")]
         [SerializeField] protected float jumpForce;
 
         [Header("Animator Controller")]
@@ -32,12 +38,17 @@ namespace Mystimor
         [SerializeField] protected Animator anim;
 
         [Header("Attack Sistem")]
-        [Tooltip("Controla o sistema de ataque do personagem")]
+        [Tooltip("Controla o intervalo entre os ataques do personagem")]
         [SerializeField] protected float attackDelay;
+        [Tooltip("Define a velocidade do golpe")]
         [SerializeField] protected float attackSpeed;
+        [Tooltip("Define a distância do golpe")]
         [SerializeField] protected float attackRange;
+        [Tooltip("Define a valor do dano")]
         [SerializeField] protected float attackDamage;
+        [Tooltip("Define a localização do ponto de contato para validar o contato para aplicar o dano")]
         [SerializeField] protected Transform posAttack;
+        [Tooltip("Cria uma camada inimigo para o mesmo ser detectado pelo ponto de contato")]
         [SerializeField] protected LayerMask enemyLayer;
         protected float nextAttackTime;
         protected bool attacking;
@@ -46,8 +57,9 @@ namespace Mystimor
         #region Unity Metods
         protected virtual void Awake()
         {
+            //Define a vida atual como a vida maxima do jogador
             currentLife = maxLife;
-            //UpdateLifeInPhoton();
+            
         }
         protected virtual void Update()
         {
