@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LocalPlayer.NickName = _nickName;
         //Cria uma localização aleatória entre -3 e 3 com 2 de altura para instanciar o player
-        Vector3 _pos = new Vector3(Random.Range(-10f, 35f), 0f, Random.Range(-16f, 20f));
+        Vector3 _pos = new Vector3( -6, 1, 21/*Random.Range(-10f, 35f), 0f, Random.Range(-16f, 20f)*/);
 
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
